@@ -1,0 +1,28 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native
+  cloud:
+#    discovery:
+#      enabled: true
+    config:
+      server:
+        native:
+          searchLocations: classpath:config/
+#    config:
+#      server:
+#        git:
+#          uri: https://github.com/spring-cloud-samples/config-repo
+#eureka:
+#  client:
+#    registerWithEureka: true
+
+logging:
+  level:
+    org:
+      springframework:
+        cloud:
+          config: TRACE

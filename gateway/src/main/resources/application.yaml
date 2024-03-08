@@ -1,0 +1,40 @@
+spring:
+  application:
+    name: Gateway
+  cloud:
+    gateway:
+      routes:
+        - id: inventoryModule
+          uri: lb://INVENTORY-SERVICE
+          predicates:
+            - Path=/inventory-service/**
+        - id: orderingModule
+          uri: lb://ORDER-SERVICE
+          predicates:
+            - Path=/order-service/**
+        - id: productsModule
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+            - Path=/product-service/**
+        - id: ratingsModule
+          uri: lb://RATING-SERVICE
+          predicates:
+            - Path=/rating-service/**
+        - id: paymentsModule
+          uri: lb://PAYMENT-SERVICE
+          predicates:
+            - Path=/payment-service/**
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+management:
+  endpoint:
+    gateway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, prometheus, gateway

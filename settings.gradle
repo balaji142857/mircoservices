@@ -1,0 +1,13 @@
+rootProject.name = 'microservices'
+
+
+include "config-server"
+include "gateway"
+include "service-registry"
+include "inventory-service"
+include "payment-service"
+include "order-service"
+include "product-service"
+include "rating-service"
+include 'models'
+include 'booking-engine'

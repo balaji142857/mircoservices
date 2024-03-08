@@ -1,0 +1,43 @@
+allprojects {
+    apply plugin: "java"
+
+    java {
+        sourceCompatibility = "$javaVersion"
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        implementation "com.github.loki4j:loki-logback-appender:$loki4jLogbackAppenderVersion"
+        implementation "ch.qos.logback:logback-core"// :$logbackCoreVersion
+        implementation "org.slf4j:slf4j-api" // :$slf4jApiVersion
+
+        compileOnly "org.projectlombok:lombok:$lombokVersion"
+        annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+    }
+}
+
+subprojects {
+    if (it.name != 'models') {
+        dependencies {
+            implementation "io.micrometer:micrometer-registry-prometheus"
+            implementation "io.micrometer:micrometer-tracing-bridge-brave"
+            implementation "io.zipkin.reporter2:zipkin-reporter-brave"
+            //	implementation 'net.ttddyy.observation:datasource-micrometer-spring-boot:1.0.1'
+        }
+    }
+    ext {
+        set('springCloudVersion', "$springCloudVersion")
+    }
+}
+
+group = 'com.bk.ms'
+version = '0.0.1-SNAPSHOT'

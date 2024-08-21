@@ -5,9 +5,18 @@ include "config-server"
 include "gateway"
 include "service-registry"
 include "inventory-service"
-include "payment-service"
 include "order-service"
-include "product-service"
-include "rating-service"
+//include "payment-service"
+//include "product-service"
+//include "rating-service"
 include 'models'
-include 'booking-engine'
+include 'demo-rabbitmq'
+include 'demo-redis'
+include 'demo-postgres'
+include 'demo-kafka-producer'
+include 'demo-kafka-consumer'
+include 'demo-kafka-models'
+include 'demo-kafka-windows'
+include 'demo-auth-server'
+include 'auth-service'
+

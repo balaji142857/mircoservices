@@ -1,0 +1,34 @@
+plugins {
+    id "org.springframework.boot" version "$springBootVersion"
+    id "io.spring.dependency-management" version "$springDependencyManagementVersion"
+    id "io.freefair.lombok" version "$lombokPluginVersion"
+}
+
+dependencies {
+    implementation project(":models")
+
+    implementation "org.springframework.boot:spring-boot-starter"
+    implementation "org.springframework.boot:spring-boot-starter-aop"
+    implementation "org.springframework.boot:spring-boot-starter-web"
+    implementation "org.springframework.boot:spring-boot-starter-security"
+    implementation "org.springframework.cloud:spring-cloud-starter-config"
+    implementation "org.springframework.cloud:spring-cloud-starter-netflix-eureka-client"
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+
+    implementation "io.jsonwebtoken:jjwt-api:${ioJwtVersion}"
+    implementation "io.jsonwebtoken:jjwt-impl:${ioJwtVersion}"
+    implementation "io.jsonwebtoken:jjwt-jackson:${ioJwtVersion}"
+
+    annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
+    testImplementation "org.springframework.boot:spring-boot-starter-test"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

@@ -7,9 +7,6 @@ spring:
     name: inventory-service
   config:
     import: configserver:http://localhost:8888
-  redis:
-    host: localhost
-    port: 6379
 
 # service registry
 eureka:

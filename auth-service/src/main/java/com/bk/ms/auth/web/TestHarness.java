@@ -1,0 +1,19 @@
+package com.bk.ms.auth.web;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequiredArgsConstructor
+@Slf4j
+public class TestHarness {
+
+
+    @GetMapping("/test")
+    public String test() {
+        return "OK";
+    }
+}
+

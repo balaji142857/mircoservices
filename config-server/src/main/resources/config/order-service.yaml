@@ -1,2 +1,6 @@
 app: "lorum ipsum"
-
+web:
+  outbound:
+    timeouts:
+      read: 120
+      connection: 120

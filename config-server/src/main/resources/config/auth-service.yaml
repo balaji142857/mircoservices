@@ -1,0 +1,7 @@
+app: "hello world"
+security:
+  jwt:
+    secretKey: someSecretKey
+#    in milli seconds, 5 minutes
+    expirationTime: 300000
+

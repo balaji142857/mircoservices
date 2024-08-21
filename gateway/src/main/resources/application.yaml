@@ -12,18 +12,26 @@ spring:
           uri: lb://ORDER-SERVICE
           predicates:
             - Path=/order-service/**
-        - id: productsModule
-          uri: lb://PRODUCT-SERVICE
+        - id: authModule
+          uri: lb://AUTH-SERVICE
           predicates:
-            - Path=/product-service/**
-        - id: ratingsModule
-          uri: lb://RATING-SERVICE
+            - Path=/auth-service/**
+        - id: redisDemo
+          uri: lb://REDIS-DEMO
           predicates:
-            - Path=/rating-service/**
-        - id: paymentsModule
-          uri: lb://PAYMENT-SERVICE
-          predicates:
-            - Path=/payment-service/**
+            - Path=/redis-demo/**
+#        - id: productsModule
+#          uri: lb://PRODUCT-SERVICE
+#          predicates:
+#            - Path=/product-service/**
+#        - id: ratingsModule
+#          uri: lb://RATING-SERVICE
+#          predicates:
+#            - Path=/rating-service/**
+#        - id: paymentsModule
+#          uri: lb://PAYMENT-SERVICE
+#          predicates:
+#            - Path=/payment-service/**
 eureka:
   client:
     registerWithEureka: false

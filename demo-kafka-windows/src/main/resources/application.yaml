@@ -1,0 +1,21 @@
+server:
+  port: 0
+spring:
+  application:
+    name: kafka-windows
+  kafka:
+    bootstrap-servers: ${app.kafka.bootstrapServers}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      key-class: java.lang.String
+      value-class: java.lang.String
+app:
+  kafka:
+    bootstrapServers: localhost:9092
+    topics:
+      outbound:
+        example: KAFKA_EXAMPLE
+        events: KAFKA_EVENTS_EXAMPLE
+  mock:
+    produceDummyEvents: false

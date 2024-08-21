@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
     <springProperty scope="context" name="appName" source="spring.application.name"/>
     <springProperty scope="context" name="appProfiles" source="spring.profiles.active"/>
 
@@ -26,7 +26,7 @@
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="LOKI"/>
+        <!-- <appender-ref ref="LOKI"/> -->
         <appender-ref ref="STDOUT"/>
     </root>
 </configuration>

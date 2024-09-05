@@ -1,0 +1,7 @@
+dn: ou=people,dc=balajikrishnan,dc=com
+objectClass: organizationalUnit
+ou: people
+
+dn: ou=groups,dc=balajikrishnan,dc=com
+objectClass: organizationalUnit
+ou: groups

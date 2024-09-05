@@ -6,9 +6,6 @@ include "gateway"
 include "service-registry"
 include "inventory-service"
 include "order-service"
-//include "payment-service"
-//include "product-service"
-//include "rating-service"
 include 'models'
 include 'demo-rabbitmq'
 include 'demo-redis'
@@ -17,6 +14,5 @@ include 'demo-kafka-producer'
 include 'demo-kafka-consumer'
 include 'demo-kafka-models'
 include 'demo-kafka-windows'
-include 'demo-auth-server'
-include 'auth-service'
+include 'authentication-service'
 

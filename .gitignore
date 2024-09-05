@@ -1,2 +1,5 @@
 */build/**
 **/*.iml
+docker/tempo/tempo-data/**
+#.gradle/8.5/**
+

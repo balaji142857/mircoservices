@@ -11,7 +11,7 @@ public class SessionWindowExample extends  AbstractStreamsPropertiesLoader{
 
     public static void main(String[] args) {
         SessionWindowExample instance = new SessionWindowExample();
-        instance.invokeWindowTest();
+        instance.invokeWindowTest(10);
     }
 
 

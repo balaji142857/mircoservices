@@ -77,7 +77,7 @@ public class StreamExample {
 
 
             // wait for five minutes & run the consumer - to log whatever is required for the scenario
-            TimeUnit.MINUTES.sleep(3);
+            sleep(3);
             if (null != outerPair.getRight()) {
                 outerPair.getRight().accept(streams, arg);
             }
@@ -235,12 +235,12 @@ public class StreamExample {
     }
 
 
-    static void logMessage(String prefix, Object key, Object value) {
+    public static void logMessage(String prefix, Object key, Object value) {
         log.info("{} (k,v): ({},{})",prefix, key,value);
     }
 
 
-    static <K,V> void logStateStore(KafkaStreams streams,
+    public static <K,V> void logStateStore(KafkaStreams streams,
                                     String storeName,
                                     QueryableStoreType<ReadOnlyKeyValueStore<K,V>> storeType) {
         ReadOnlyKeyValueStore<K, V> keyValueStore =
@@ -253,13 +253,6 @@ public class StreamExample {
         }
     }
 
-    static Properties loadProperties() throws IOException {
-        Properties props = new Properties();
-        String propFile = "application.properties";
-        InputStream propertiesInputStream = StreamExample.class.getClassLoader().getResourceAsStream(propFile);
-        props.load(propertiesInputStream);
-        return props;
-    }
 
     private static void setStateStoreDir(Properties props) {
         // setup a state dir in temp and delete the file on exit
@@ -273,5 +266,26 @@ public class StreamExample {
         } catch (Exception e) {
             log.error("Unable to set a random temp directory for state store, Starting multiple instances is bound to fail", e);
         }
+    }
+
+    public static void sleep(int sleepTimeInMinutes) {
+        try {
+            TimeUnit.MINUTES.sleep(sleepTimeInMinutes);
+        } catch (InterruptedException e) {
+            log.error("Error occurred while keep the thread in sleep state", e);
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    public static Properties loadProperties() {
+        Properties props = new Properties();
+        String propFile = "application.properties";
+        try {
+            InputStream propertiesInputStream = StreamExample.class.getClassLoader().getResourceAsStream(propFile);
+            props.load(propertiesInputStream);
+        } catch (IOException e) {
+            throw new RuntimeException("Unable to load the property file " + propFile, e);
+        }
+        return props;
     }
 }

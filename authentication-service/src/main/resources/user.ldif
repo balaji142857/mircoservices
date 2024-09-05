@@ -1,0 +1,15 @@
+dn: uid=alex,ou=people,dc=balajikrishnan,dc=com
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: alex
+sn: smith
+givenName: alex
+cn: alex smith
+displayName: alex smith
+uidNumber: 7000
+gidNumber: 7000
+userPassword: {SSHA}EMIkHrIO+GmzXxEWjCC1SdKZ1t4beyWl 
+gecos: Alex Smith
+loginShell: /bin/bash
+homeDirectory: /home/alex

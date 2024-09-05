@@ -10,7 +10,7 @@ public class SlidingWindowExample extends AbstractStreamsPropertiesLoader {
 
     public static void main(String[] args) {
        SlidingWindowExample instance = new SlidingWindowExample();
-       instance.invokeWindowTest();
+       instance.invokeWindowTest(5);
     }
 
     StreamsBuilder createWindow() {

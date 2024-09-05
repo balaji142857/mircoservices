@@ -11,7 +11,7 @@ import java.time.Duration;
 public class HoppingWindowExample extends  AbstractStreamsPropertiesLoader{
     public static void main(String[] args) {
         HoppingWindowExample instance = new HoppingWindowExample();
-        instance.invokeWindowTest();
+        instance.invokeWindowTest(10);
     }
 
 

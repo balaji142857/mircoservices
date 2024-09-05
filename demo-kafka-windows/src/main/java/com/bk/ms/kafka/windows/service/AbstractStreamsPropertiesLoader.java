@@ -7,23 +7,30 @@ import org.apache.kafka.streams.StreamsBuilder;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 @Slf4j
 public abstract class AbstractStreamsPropertiesLoader {
 
-    void invokeWindowTest() {
-        Properties props = new Properties();
-        String propFile = "application.properties";
-        try (InputStream propertiesInputStream = getClass().getClassLoader().getResourceAsStream(propFile)) {
-            props.load(propertiesInputStream);
-            StreamsBuilder builder = createWindow();
-            KafkaStreams streams = new KafkaStreams(builder.build(), props);
-            streams.start();
-            log.info("streams app has started..");
-        } catch (IOException e) {
-            log.error("Error occurred while setting up streams",e);
-        }
-    }
+    protected KafkaStreams streams;
+
+    protected  Properties props;
 
     abstract StreamsBuilder createWindow();
+
+    protected void preCloseActions() {}
+
+    protected void updateProperties() { }
+
+    void invokeWindowTest(int sleepTimeInMinutes) {
+        props = StreamExample.loadProperties();
+        StreamsBuilder builder = createWindow();
+        updateProperties();
+        streams = new KafkaStreams(builder.build(), props);
+        streams.start();
+        log.info("streams app has started..");
+        StreamExample.sleep(sleepTimeInMinutes);
+        preCloseActions();
+        streams.close();
+    }
 }

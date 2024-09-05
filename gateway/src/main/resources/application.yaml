@@ -13,9 +13,9 @@ spring:
           predicates:
             - Path=/order-service/**
         - id: authModule
-          uri: lb://AUTH-SERVICE
+          uri: lb://AUTHENTICATION-SERVICE
           predicates:
-            - Path=/auth-service/**
+            - Path=/authentication-service/**
         - id: redisDemo
           uri: lb://REDIS-DEMO
           predicates:

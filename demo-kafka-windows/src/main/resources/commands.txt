@@ -3,7 +3,12 @@
 ./kafka-topics.sh --bootstrap-server localhost:9092 --topic topic-c --create --partitions 1 --replication-factor 1
 ./kafka-topics.sh --bootstrap-server localhost:9092 --topic topic-d --create --partitions 2 --replication-factor 1
 ./kafka-topics.sh --bootstrap-server localhost:9092 --topic word-count --create --partitions 1 --replication-factor 1
-./kafka-console-producer.sh --broker-list localhost:9092 --topic topic-a --property "parse.key=true" --property "key.separator=:"
+
+./kafka-topics.sh --bootstrap-server localhost:9092 --topic temperature-sensor --create --partitions 1 --replication-factor 1
+./kafka-topics.sh --bootstrap-server localhost:9092 --topic temperature-sensor-windowed --create --partitions 1 --replication-factor 1
+
+
+./kafka-console-producer.sh --broker-list localhost:9092 --topic temperature-sensor --property "parse.key=true" --property "key.separator=:"
 ./kafka-console-producer.sh --broker-list localhost:9092 --topic topic-a
 
 
@@ -19,7 +24,7 @@ kafka
 	joins: table-table	    PENDING!!!
 	joins: stream-gT	    PENDING!!!
 
-	window: Tumbling	    PENDING!!!
+	window: Tumbling	    WIP
 	window:	Hopping		    PENDING!!!
 	window:	Session		    PENDING!!!
 	window:	Sliding		    PENDING!!!

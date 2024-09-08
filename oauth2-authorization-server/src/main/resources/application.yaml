@@ -1,0 +1,14 @@
+server:
+  port: 9000
+
+logging:
+  level:
+    org.springframework.security: trace
+    org.springframework.web: trace
+
+
+spring:
+  mvc:
+    log-request-details: true
+  codec:
+    log-request-details: true

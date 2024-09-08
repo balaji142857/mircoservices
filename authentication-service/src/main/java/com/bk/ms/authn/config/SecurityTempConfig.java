@@ -1,6 +1,6 @@
-package com.bk.ms.auth.config;
+package com.bk.ms.authn.config;
 
-import com.bk.ms.auth.service.LdapService;
+import com.bk.ms.authn.service.LdapService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

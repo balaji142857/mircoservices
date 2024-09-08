@@ -1,4 +1,4 @@
-package com.bk.ms.auth;
+package com.bk.ms.authn;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

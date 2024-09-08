@@ -1,0 +1,20 @@
+server:
+  port: 8090
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://127.0.0.1:9000
+  mvc:
+    log-request-details: true
+  codec:
+    log-request-details: true
+
+
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.web.client.RestTemplate: TRACE
+    org.springframework.security: TRACE

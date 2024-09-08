@@ -15,4 +15,7 @@ include 'demo-kafka-consumer'
 include 'demo-kafka-models'
 include 'demo-kafka-windows'
 include 'authentication-service'
+include 'oauth2-authorization-server'
+include 'oauth2-resource-server1'
+include 'oauth2-resource-server2'
 

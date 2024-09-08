@@ -1,0 +1,24 @@
+server:
+  port: 8000
+
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            clientId: ${SPRING_DEMO_GITHUB_CLIENT_ID}
+            clientSecret: ${SPRING_DEMO_GITHUB_CLIENT_SECRET}
+  mvc:
+    log-request-details: true
+  codec:
+    log-request-details: true
+
+
+logging:
+  level:
+    root: INFO
+    org.springframework.web: TRACE
+    org.springframework.security: TRACE
+    org.springframework.security.oauth2: TRACE

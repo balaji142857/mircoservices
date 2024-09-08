@@ -18,4 +18,6 @@ include 'authentication-service'
 include 'oauth2-authorization-server'
 include 'oauth2-resource-server1'
 include 'oauth2-resource-server2'
+include 'oauth2-web-client'
+include 'demo-websocket'
 

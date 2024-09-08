@@ -34,14 +34,18 @@ import org.springframework.security.oauth2.server.authorization.config.annotatio
 import org.springframework.security.oauth2.server.authorization.settings.AuthorizationServerSettings;
 import org.springframework.security.oauth2.server.authorization.settings.ClientSettings;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.util.matcher.MediaTypeRequestMatcher;
-import org.springframework.web.servlet.DispatcherServlet;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+
+    AuthenticationEntryPoint oauthEntryPoint = new LoginUrlAuthenticationEntryPoint("/login");
+    MediaTypeRequestMatcher htmlMediaType = new MediaTypeRequestMatcher(MediaType.TEXT_HTML);
 
     @Bean
     @Order(1)
@@ -49,19 +53,13 @@ public class SecurityConfig {
             throws Exception {
         OAuth2AuthorizationServerConfiguration.applyDefaultSecurity(http);
         http.getConfigurer(OAuth2AuthorizationServerConfigurer.class)
-                .oidc(Customizer.withDefaults());	// Enable OpenID Connect 1.0
+                // Enable OpenID Connect 1.0
+                .oidc(Customizer.withDefaults());
         http
-                // Redirect to the login page when not authenticated from the
-                // authorization endpoint
-                .exceptionHandling((exceptions) -> exceptions
-                        .defaultAuthenticationEntryPointFor(
-                                new LoginUrlAuthenticationEntryPoint("/login"),
-                                new MediaTypeRequestMatcher(MediaType.TEXT_HTML)
-                        )
-                )
+                // Redirect to the login page when not authenticated from the authorization endpoint
+                .exceptionHandling(e -> e.defaultAuthenticationEntryPointFor(oauthEntryPoint, htmlMediaType))
                 // Accept access tokens for User Info and/or Client Registration
-                .oauth2ResourceServer((resourceServer) -> resourceServer
-                        .jwt(Customizer.withDefaults()));
+                .oauth2ResourceServer(resourceServer -> resourceServer.jwt(Customizer.withDefaults()));
 
         return http.build();
     }
@@ -78,7 +76,6 @@ public class SecurityConfig {
                 // Form login handles the redirect to the login page from the
                 // authorization server filter chain
                 .formLogin(Customizer.withDefaults());
-
         return http.build();
     }
 
@@ -89,7 +86,6 @@ public class SecurityConfig {
                 .password("password")
                 .roles("USER")
                 .build();
-
         return new InMemoryUserDetailsManager(userDetails);
     }
 
@@ -109,7 +105,6 @@ public class SecurityConfig {
                 .scope("products.read")
                 .clientSettings(ClientSettings.builder().requireAuthorizationConsent(true).build())
                 .build();
-        DispatcherServlet ds;
         return new InMemoryRegisteredClientRepository(oidcClient);
     }
 

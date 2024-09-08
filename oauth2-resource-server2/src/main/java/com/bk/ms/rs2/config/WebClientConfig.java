@@ -14,6 +14,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfig {
 
+
+    // INFO - no configuration available in GA release for restClient. for now continue with webClient.
+    //  See below PR - already in milestone release
+    //  https://github.com/spring-projects/spring-security/issues/13588
+
     @Bean
     WebClient webClient(OAuth2AuthorizedClientManager authorizedClientManager) {
         ServletOAuth2AuthorizedClientExchangeFilterFunction oauth2Client =
